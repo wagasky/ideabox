@@ -3,10 +3,16 @@
 * {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  font-size: 22px;
+  font-size: 21px;
   color: #6D6E71;
-
 }
+
+/*body {
+  padding: 20px 20px 20px 20px;
+}*/
+
+/*Amanda, left this (and one more below) in for 
+you to test responsive desgin break points if it helps!*/
 
 label {
   display:none;
@@ -20,6 +26,7 @@ h1 {
   font-size: 30px;
   font-weight: 700;
   padding: 20px 0px;
+  letter-spacing: 1.25px;
 }
 
 h1 span {
@@ -85,7 +92,8 @@ input:focus, textarea:focus {
 p {
   color: #939598;
   font-family: 'Open Sans', sans-serif;
-  font-size: 20px;
+  font-size: 18px;
+  letter-spacing: .5px;
 }
 
 .card-headings {
@@ -143,11 +151,29 @@ p {
 
 /*MEDIA QUERIES*/
 
+@media screen and (min-width: 520px) {
+/*  body {
+    background-color: magenta;
+  }*/
+/*Amanda - I left this in just in case it could be userful to you*/
 
+  h1 {
+    font-size: 45px;
+    padding: 40px 0px;
+  }
 
+  #description-input {
+    width: 476px;
+    height: 32px;
+  }
 
+  #search-input {
+    margin: 25px 0px 20px 0px;
+  }
 
-
+  .single-line-input, #save-button,  #idea-card  {
+    width: 480px;
+  }
 
 
 
