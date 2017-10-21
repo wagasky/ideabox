@@ -1,3 +1,87 @@
+/*BODY*/
+
+* {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  color: #6D6E71;
+
+}
+
 label {
   display:none;
 }
+
+/*INPUT SECTION CONTAINER*/
+
+h1 {
+  color: #00A79D;
+  font-family: 'Roboto Slab', serif;
+  font-size: 30px;
+  font-weight: 700;
+  padding: 20px 0px;
+}
+
+h1 span {
+  color: #6D6E71;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #BDBEC0;
+}
+
+input:focus, textarea:focus {
+  background   : #EEEEEE;
+  outline      : none;
+}
+
+.main-section {
+  background-color: #E5F3F2;
+  height: 300px;
+  text-align: center;
+}
+
+.rectangular-blue-button {
+  background-color: #00A79D;
+  border: none;
+  color: #FFFFFF;
+  height: 40px;
+  padding: 0;
+  vertical-align: center;
+  width: 275px;
+}
+
+#title-input {
+  border: 1px solid #A7A9AC;
+  color: #6D6E71;
+  height: 32px;
+  margin-bottom: 17px;
+  padding: 0;
+  text-indent: 10px;
+  width: 275px;
+}
+
+#description-input {
+  border-width: 1px;
+  border: 1px solid #A7A9AC;
+  color: #939598;
+  height: 92px;
+  margin: 0px 0px 18px 0px;
+  padding: 1px 3px;
+  text-indent: 7px;
+  vertical-align: top;
+  width: 269px;
+}
+
+#user-input-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 0px 20px 0px;
+}
+
+/*CARD SECTION CONTAINER*/
+
+
+
+/*MEDIA QUERIES*/
