@@ -12,7 +12,7 @@ label {
   display:none;
 }
 
-/*INPUT SECTION CONTAINER*/
+/*IDEA INPUT FORM*/
 
 h1 {
   color: #00A79D;
@@ -35,7 +35,7 @@ input:focus, textarea:focus {
   outline      : none;
 }
 
-.main-section {
+#user-input-form-section {
   background-color: #E5F3F2;
   height: 300px;
   text-align: center;
@@ -51,7 +51,7 @@ input:focus, textarea:focus {
   width: 275px;
 }
 
-#title-input {
+.single-line-input {
   border: 1px solid #A7A9AC;
   color: #6D6E71;
   height: 32px;
@@ -82,6 +82,95 @@ input:focus, textarea:focus {
 
 /*CARD SECTION CONTAINER*/
 
+p {
+  color: #939598;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+}
 
+.card-headings {
+  color: #6D6E71;
+  font-family: 'Roboto Slab', serif;
+  font-size: 24px;
+}
+
+.small-grey-button {
+  height: 26px;
+  padding: 0px 15px 0px 0px;
+}
+
+#idea-box-section {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FFFFFF;
+}
+
+#search-input {
+  margin: 18px 0px 20px 0px;
+}
+
+#idea-card {
+  /*height: 200px;*/
+  width: 277px;
+  border-bottom: 2px solid #D1D2D4;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#quality-display-text {
+  font-size: 16px;
+  padding: 5px 0px 5px 0px;
+}
+
+#idea-card-title-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+#idea-card-quality-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
 /*MEDIA QUERIES*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
