@@ -7,6 +7,7 @@ var $saveButton = $('#save-button');
 $saveButton.on('click', function(event) {
   event.preventDefault();
   prependIdea();
+  resetInputFields();
 });
 
 function prependIdea() {
@@ -28,4 +29,9 @@ function prependIdea() {
         </div>
       </form>
     </article>`);
+}
+
+function resetInputFields() {
+  var $form = $('#user-input-form');
+  $form[0].reset();
 }
