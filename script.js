@@ -19,6 +19,7 @@ $('#idea-card-section').on('click', '.idea-card .delete', function(e) {
 $('#idea-card-section').on('click', '.idea-card .downvote', function(e) {
   e.preventDefault();
   console.log(this);
+  downvoteButton(this);
 })
 
 $('#idea-card-section').on('click', '.idea-card .upvote', function(e) {
@@ -55,9 +56,15 @@ function deleteButton(button) {
   button.closest('.idea-card').remove();
 }
 
+function downvoteButton(button) {
+  console.log('function run');
+  button.closest('span.quality').text('puppies');
+}
+//staticDIV.on('click', '.buttonclass', function)
+
 function upvoteButton(button) {
   var $currentIdea = button.closest('.idea-card');
-  
+
 }
 
 
