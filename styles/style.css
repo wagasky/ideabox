@@ -1,21 +1,18 @@
 /*BODY*/
 
 * {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 21px;
   color: #6D6E71;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 21px;
+  font-weight: 400;
 }
-
-/*body {
-  padding: 20px 20px 20px 20px;
-}*/
-
-/*Amanda, left this (and one more below) in for 
-you to test responsive desgin break points if it helps!*/
 
 label {
   display:none;
+}
+
+textarea {
+  resize: none
 }
 
 /*IDEA INPUT FORM*/
@@ -25,8 +22,8 @@ h1 {
   font-family: 'Roboto Slab', serif;
   font-size: 30px;
   font-weight: 700;
-  padding: 20px 0px;
   letter-spacing: 1.25px;
+  padding: 20px 0px;
 }
 
 h1 span {
@@ -94,12 +91,27 @@ p {
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
   letter-spacing: .5px;
+  overflow: hidden;
+  width: 100%;
+  word-wrap: break-word;
 }
 
 .card-headings {
   color: #6D6E71;
   font-family: 'Roboto Slab', serif;
   font-size: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 75%;
+}
+
+.idea-card {
+  border-bottom: 2px solid #D1D2D4;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 277px;
 }
 
 .small-grey-button {
@@ -108,22 +120,14 @@ p {
 }
 
 #idea-box-section {
-  display:flex;
-  flex-direction: column;
   align-items: center;
   background-color: #FFFFFF;
+  display:flex;
+  flex-direction: column;
 }
 
 #search-input {
   margin: 18px 0px 20px 0px;
-}
-
-.idea-card {
-  width: 277px;
-  border-bottom: 2px solid #D1D2D4;
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 #idea-card-title-container {
@@ -140,8 +144,8 @@ p {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin-top: 20px;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 #quality-display-text {
@@ -152,10 +156,6 @@ p {
 /*MEDIA QUERIES*/
 
 @media screen and (min-width: 520px) {
-/*  body {
-    background-color: magenta;
-  }*/
-/*Amanda - I left this in just in case it could be userful to you*/
 
   h1 {
     font-size: 45px;
@@ -163,15 +163,17 @@ p {
   }
 
   #description-input {
-    width: 476px;
     height: 32px;
+    width: 476px;
   }
 
   #search-input {
     margin: 25px 0px 20px 0px;
   }
 
-  .single-line-input, #save-button,  #idea-card  {
+  #save-button,
+  .idea-card,
+  .single-line-input {
     width: 480px;
   }
 
