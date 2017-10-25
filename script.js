@@ -13,23 +13,26 @@ $saveButton.on('click', function(event) {
   resetInputFields();
 });
 
-$('#idea-card-section').on('click', '.idea-card .delete', function(e) {
-  e.preventDefault();
+$('#idea-card-section').on('click', '.idea-card .delete', function(event) {
+  event.preventDefault();
   deleteButton(this);
+  // look at this to refactor and put in function
+  var currentId = event.target.closest('.idea-card').id
+  localStorage.removeItem(currentId);
 })
 
 // this event listener is working, but not the function below
 
-$('#idea-card-section').on('click', '.idea-card .downvote', function(e) {
-  e.preventDefault();
+$('#idea-card-section').on('click', '.idea-card .downvote', function(event) {
+  event.preventDefault();
   console.log(this);
   downvoteButton(this);
 })
 
 // // this event listener is working, but not the function below
 
-$('#idea-card-section').on('click', '.idea-card .upvote', function(e) {
-  e.preventDefault();
+$('#idea-card-section').on('click', '.idea-card .upvote', function(event) {
+  event.preventDefault();
   console.log(this);
 })
 
@@ -91,4 +94,6 @@ function genCard(title, body) {
   var stringIdea = JSON.stringify(newIdea);
   localStorage.setItem(newIdea['idNum'], stringIdea);
 }
+
+
 
