@@ -9,6 +9,11 @@ $saveButton.on('click', function(event) {
   resetInputFields();
 });
 
+$(window).on('load', function() {
+  getIdeasFromStorage();
+  console.log("window loaded");
+})
+
 $('#idea-card-section').on('click', '.idea-card .delete', function(event) {
   event.preventDefault();
   deleteButton(this);
@@ -33,21 +38,21 @@ $('#idea-card-section').on('click', '.idea-card .upvote', function(event) {
   upvoteButton();
 })
 
-function prependIdea(title, body, idNum) {
-  $ideaCardSection.prepend(`<article id="${idNum}" class="idea-card">
+function prependIdea(idea) {
+  $ideaCardSection.prepend(`<article id="${idea['idNum']}" class="idea-card">
       <form id="card-meta-data-form">
         <div id="idea-card-title-container">
-        <h2 id="card-title" class="card-headings">${title}</h2>
+        <h2 contentededitable=true id="card-title" class="card-headings">${idea['title']}</h2>
         <label for="delete-button">Delete</label>
         <input id="delete-button" class="small-grey-button delete" name="delete-button" type="image" src="FEE-ideabox-icon-assets/delete.svg"></input>
         </div>
-        <p id="card-description">${body}</p>
-        <label for="up-vote-button">Up</label>
+        <p contenteditable=true id="card-description">${idea['body']}</p>
         <div id="idea-card-quality-container">
-        <input id="up-vote-button" class="small-grey-button upvote" name="up-vote-button" type="image" src="FEE-ideabox-icon-assets/upvote.svg"></input>
-        <label for="down-vote-button">Down</label>
-        <input id="down-vote-button" class="small-grey-button downvote" name="down-vote-button" type="image" src="FEE-ideabox-icon-assets/downvote.svg"></input>
-        <h3 id="quality-display-text" class="card-headings">quality : <span class="quality">swill</span></h3>
+          <label for="up-vote-button">Up</label>
+          <label for="down-vote-button">Down</label>
+          <input id="up-vote-button" class="small-grey-button upvote" name="up-vote-button" type="image" src="FEE-ideabox-icon-assets/upvote.svg"></input>
+          <input id="down-vote-button" class="small-grey-button downvote" name="down-vote-button" type="image" src="FEE-ideabox-icon-assets/downvote.svg"></input>
+          <h3 id="quality-display-text" class="card-headings">quality : <span class="quality">${idea['quality']}</span></h3>
         </div>
       </form>
     </article>`);
@@ -68,6 +73,7 @@ function downvoteButton() {
   var parsedObject = JSON.parse(retrievedObject);
   if (parsedObject.quality === 'genius') {
     parsedObject.quality = 'plausible';
+
   } else if (parsedObject.quality === 'plausible'){
     parsedObject.quality = 'swill';
   }
@@ -76,6 +82,8 @@ function downvoteButton() {
 
 function upvoteButton() {
   var currentId = event.target.closest('.idea-card').id;
+  var currentQuality = event.target.closest('#idea-card-quality-container');
+  console.log(currentQuality);
   var retrievedObject = localStorage.getItem(currentId);
   var parsedObject = JSON.parse(retrievedObject);
   if(parsedObject.quality === 'swill') {
@@ -83,21 +91,22 @@ function upvoteButton() {
   } else if (parsedObject.quality === 'plausible'){
     parsedObject.quality = 'genius';
   }
+
   putIntoStorage(parsedObject);
 }
 
-function Idea(title, body, idNum) {
+function Idea(title, body, idNum, quality) {
   this.title = title;
   this.body = body;
   this.idNum = idNum;
-  this.quality = 'swill';
+  this.quality = quality || 'swill';
 }
 
 function genCard(title, body) {
   var title = $('#title-input').val();
   var body = $('#description-input').val();
   var newIdea = new Idea(title, body, Date.now());
-  prependIdea(newIdea['title'], newIdea['body'], newIdea['idNum']);
+  prependIdea(newIdea);
   putIntoStorage(newIdea);
 }
 
@@ -106,5 +115,16 @@ function putIntoStorage(object) {
   localStorage.setItem(object['idNum'], stringIdea);
 } 
 
+function getIdeasFromStorage() {
+  // var cardData = [];
+  for(var i = 0; i < localStorage.length; i++) {
+    var retrievedIdea = localStorage.getItem(localStorage.key(i));
+    var parsedIdea = JSON.parse(retrievedIdea);
+    prependIdea(parsedIdea);
+  }
+  // cardData.forEach(function (card) {
+
+  // }) 
+}
 
 
