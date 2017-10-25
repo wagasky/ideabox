@@ -1,8 +1,4 @@
-// var $titleInput = $('#title-input');
-// var $bodyInput = $('#description-input');
 var $ideaCardSection = $('#idea-card-section');
-var idNum;
-
 
 // could potentially make these local variables...
 var $saveButton = $('#save-button');
@@ -21,19 +17,20 @@ $('#idea-card-section').on('click', '.idea-card .delete', function(event) {
   localStorage.removeItem(currentId);
 })
 
-// this event listener is working, but not the function below
+// this event listener is working and functions are working - missing text injection
 
 $('#idea-card-section').on('click', '.idea-card .downvote', function(event) {
   event.preventDefault();
   console.log(this);
-  downvoteButton(this);
+  downvoteButton();
 })
 
-// // this event listener is working, but not the function below
+// this event listener is working and functions are working - missing text injection
 
 $('#idea-card-section').on('click', '.idea-card .upvote', function(event) {
   event.preventDefault();
   console.log(this);
+  upvoteButton();
 })
 
 function prependIdea(title, body, idNum) {
@@ -65,18 +62,28 @@ function deleteButton(button) {
   button.closest('.idea-card').remove();
 }
 
-// this isn't working currently
-
-function downvoteButton(button) {
-  console.log('function run');
-  button.closest('span.quality').text('puppies');
+function downvoteButton() {
+  var currentId = event.target.closest('.idea-card').id;
+  var retrievedObject = localStorage.getItem(currentId);
+  var parsedObject = JSON.parse(retrievedObject);
+  if (parsedObject.quality === 'genius') {
+    parsedObject.quality = 'plausible';
+  } else if (parsedObject.quality === 'plausible'){
+    parsedObject.quality = 'swill';
+  }
+  putIntoStorage(parsedObject);
 }
-//staticDIV.on('click', '.buttonclass', function)
 
-// this function isn't working currently
-function upvoteButton(button) {
-  var $currentIdea = button.closest('.idea-card');
-
+function upvoteButton() {
+  var currentId = event.target.closest('.idea-card').id;
+  var retrievedObject = localStorage.getItem(currentId);
+  var parsedObject = JSON.parse(retrievedObject);
+  if(parsedObject.quality === 'swill') {
+    parsedObject.quality = 'plausible';
+  } else if (parsedObject.quality === 'plausible'){
+    parsedObject.quality = 'genius';
+  }
+  putIntoStorage(parsedObject);
 }
 
 function Idea(title, body, idNum) {
@@ -91,9 +98,13 @@ function genCard(title, body) {
   var body = $('#description-input').val();
   var newIdea = new Idea(title, body, Date.now());
   prependIdea(newIdea['title'], newIdea['body'], newIdea['idNum']);
-  var stringIdea = JSON.stringify(newIdea);
-  localStorage.setItem(newIdea['idNum'], stringIdea);
+  putIntoStorage(newIdea);
 }
+
+function putIntoStorage(object) {
+  var stringIdea = JSON.stringify(object);
+  localStorage.setItem(object['idNum'], stringIdea);
+} 
 
 
 
