@@ -42,7 +42,7 @@ function prependIdea(idea) {
   $ideaCardSection.prepend(`<article id="${idea['idNum']}" class="idea-card">
       <form id="card-meta-data-form">
         <div id="idea-card-title-container">
-        <h2 contentededitable=true id="card-title" class="card-headings">${idea['title']}</h2>
+        <h2 contenteditable=true id="card-title" class="card-headings">${idea['title']}</h2>
         <label for="delete-button">Delete</label>
         <input id="delete-button" class="small-grey-button delete" name="delete-button" type="image" src="FEE-ideabox-icon-assets/delete.svg"></input>
         </div>
@@ -69,29 +69,33 @@ function deleteButton(button) {
 
 function downvoteButton() {
   var currentId = event.target.closest('.idea-card').id;
+  // var currentCard = event.target.closest('idea-card');
   var retrievedObject = localStorage.getItem(currentId);
   var parsedObject = JSON.parse(retrievedObject);
   if (parsedObject.quality === 'genius') {
     parsedObject.quality = 'plausible';
-
+    $(`#${currentId} .quality`).text('plausible');
+    // event.target.closest('#quality').html(parsedObject.quality);
   } else if (parsedObject.quality === 'plausible'){
     parsedObject.quality = 'swill';
+    $(`#${currentId} .quality`).text('swill');
   }
   putIntoStorage(parsedObject);
 }
 
 function upvoteButton() {
   var currentId = event.target.closest('.idea-card').id;
-  var currentQuality = event.target.closest('#idea-card-quality-container');
-  console.log(currentQuality);
+  // var currentQuality = event.target.closest('#idea-card-quality-container');
+  // console.log(currentQuality);
   var retrievedObject = localStorage.getItem(currentId);
   var parsedObject = JSON.parse(retrievedObject);
-  if(parsedObject.quality === 'swill') {
+  if( parsedObject.quality === 'swill') {
     parsedObject.quality = 'plausible';
+    $(`#${currentId} .quality`).text('plausible');
   } else if (parsedObject.quality === 'plausible'){
     parsedObject.quality = 'genius';
+    $(`#${currentId} .quality`).text('genius');
   }
-
   putIntoStorage(parsedObject);
 }
 
