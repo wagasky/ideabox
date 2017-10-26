@@ -180,9 +180,10 @@ $('#search-input').keypress(function(event) {
       console.log(currentId);
       if (parsedObject['title'].toUpperCase().includes(filteredText) || parsedObject['body'].toUpperCase().includes(filteredText)) {
         console.log('yay!')
-        // $(`${currentId}`).css( "display", "" );
+        console.log(parsedObject);
+        $(`#${currentId}`).css( "display", "" );
       } else {
-        // $(`${currentId}`).css( "display", "none");
+        $(`#${currentId}`).css( "display", "none");
         console.log('boo');
       }
     }
