@@ -22,15 +22,11 @@ $('#idea-card-section').on('click', '.idea-card .delete', function(event) {
   localStorage.removeItem(currentId);
 })
 
-// this event listener is working and functions are working - missing text injection
-
 $('#idea-card-section').on('click', '.idea-card .downvote', function(event) {
   event.preventDefault();
   console.log(this);
   downvoteButton();
 })
-
-// this event listener is working and functions are working - missing text injection
 
 $('#idea-card-section').on('click', '.idea-card .upvote', function(event) {
   event.preventDefault();
@@ -38,15 +34,58 @@ $('#idea-card-section').on('click', '.idea-card .upvote', function(event) {
   upvoteButton();
 })
 
+$('#idea-card-section').on('blur', '.idea-card .idea-title', function(event) {
+  event.preventDefault();
+  console.log(this);
+  editCardTitle();
+})
+
+$('#idea-card-section').on('blur', '.idea-card .idea-description', function(event) {
+  event.preventDefault();
+  editCardDescription();
+})
+
+$('#idea-card-section').keypress('.idea-card .idea-title', function(event) {
+  if(event.keyCode === 13){
+    event.preventDefault();
+    editCardTitle();
+  }
+})
+
+$('#idea-card-section').keypress('.idea-card .idea-description', function(event) {
+  if(event.keyCode === 13){
+    event.preventDefault();
+    editCardDescription();
+  }
+})
+
+function editCardTitle() {
+  var currentId = event.target.closest('.idea-card').id;
+  var retrievedObject = localStorage.getItem(currentId);
+  var parsedObject = JSON.parse(retrievedObject);
+  var newTitle = $(`#${currentId} .idea-title`).text();
+  parsedObject['title'] = newTitle;
+  putIntoStorage(parsedObject);
+}
+
+function editCardDescription() {
+  var currentId = event.target.closest('.idea-card').id;
+  var retrievedObject = localStorage.getItem(currentId);
+  var parsedObject = JSON.parse(retrievedObject);
+  var newDescription = $(`#${currentId} .idea-description`).text();
+  parsedObject['body'] = newDescription;
+  putIntoStorage(parsedObject);
+}
+
 function prependIdea(idea) {
   $ideaCardSection.prepend(`<article id="${idea['idNum']}" class="idea-card">
       <form id="card-meta-data-form">
         <div id="idea-card-title-container">
-        <h2 contenteditable=true id="card-title" class="card-headings">${idea['title']}</h2>
+        <h2 contenteditable=true id="card-title" class="card-headings idea-title">${idea['title']}</h2>
         <label for="delete-button">Delete</label>
         <input id="delete-button" class="small-grey-button delete" name="delete-button" type="image" src="FEE-ideabox-icon-assets/delete.svg"></input>
         </div>
-        <p contenteditable=true id="card-description">${idea['body']}</p>
+        <p contenteditable=true id="card-description" class="idea-description">${idea['body']}</p>
         <div id="idea-card-quality-container">
           <label for="up-vote-button">Up</label>
           <label for="down-vote-button">Down</label>
@@ -69,13 +108,11 @@ function deleteButton(button) {
 
 function downvoteButton() {
   var currentId = event.target.closest('.idea-card').id;
-  // var currentCard = event.target.closest('idea-card');
   var retrievedObject = localStorage.getItem(currentId);
   var parsedObject = JSON.parse(retrievedObject);
   if (parsedObject.quality === 'genius') {
     parsedObject.quality = 'plausible';
     $(`#${currentId} .quality`).text('plausible');
-    // event.target.closest('#quality').html(parsedObject.quality);
   } else if (parsedObject.quality === 'plausible'){
     parsedObject.quality = 'swill';
     $(`#${currentId} .quality`).text('swill');
@@ -85,8 +122,6 @@ function downvoteButton() {
 
 function upvoteButton() {
   var currentId = event.target.closest('.idea-card').id;
-  // var currentQuality = event.target.closest('#idea-card-quality-container');
-  // console.log(currentQuality);
   var retrievedObject = localStorage.getItem(currentId);
   var parsedObject = JSON.parse(retrievedObject);
   if( parsedObject.quality === 'swill') {
@@ -120,15 +155,11 @@ function putIntoStorage(object) {
 } 
 
 function getIdeasFromStorage() {
-  // var cardData = [];
   for(var i = 0; i < localStorage.length; i++) {
     var retrievedIdea = localStorage.getItem(localStorage.key(i));
     var parsedIdea = JSON.parse(retrievedIdea);
     prependIdea(parsedIdea);
   }
-  // cardData.forEach(function (card) {
-
-  // }) 
 }
 
 
