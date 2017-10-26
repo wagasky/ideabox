@@ -162,4 +162,27 @@ function getIdeasFromStorage() {
   }
 }
 
-
+$('#search-input').keypress(function(event) {
+  if(event.keyCode === 13){
+    event.preventDefault();
+    // console.log('enter was pressed');
+    var searchText = $(this).val();
+    console.log(searchText);
+    var filteredText = searchText.toUpperCase();
+    for (var i = 0; i < localStorage.length; i++) {
+      // var currentId = event.target.closest('.idea-card').id;
+      var retrievedIdea = localStorage.getItem(localStorage.key(i));
+      var parsedObject = JSON.parse(retrievedIdea);
+      var currentId = parsedObject['idNum'];
+      console.log(parsedObject);
+      console.log(currentId);
+      if (parsedObject['title'].toUpperCase().includes(filteredText) || parsedObject['body'].toUpperCase().includes(filteredText)) {
+        console.log('yay!')
+        // $(`${currentId}`).css( "display", "" );
+      } else {
+        // $(`${currentId}`).css( "display", "none");
+        console.log('boo');
+      }
+    }
+  } 
+});
