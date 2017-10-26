@@ -45,18 +45,18 @@ We were able to build out this functionality. Our app is also responsive.
 * Should you alphabetize functions in your JS file sections?
 * We found ourselves debating ids vs. classes often... when should uses classes in event bubbling?
 
-## Built With
+# Built With
 
 * HTML
 * CSS
 * JavaScript/jQuery
 
-## Authors
+# Authors
 
 * **Amanda Tjan** - [Amanda Tjan](https://github.com/soytjan)
 * **Melissa Wagasky** - [Melissa Wagasky](https://github.com/wagasky)
 
-## Acknowledgments
+# Acknowledgments
 
 * Thomas in Module #2 for his awesome help in brainstorming before we started!
 * Jesse in Module #2 for reviewing our code!
