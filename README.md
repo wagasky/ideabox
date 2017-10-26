@@ -1,89 +1,51 @@
-<!-- Project Template -->
+# Module 1 Ideabox:
 
-# Project Title
+Our task was to recreate an Ideabox comp and the following functionality:
 
-One Paragraph of project description goes here
+* A user can submit idea with a title and description.
+* A user's ideas will display in a list in the UI.
+* A user can edit and delete those ideas and have their changes persist in local storage, even upon refresh.
+* A user can up and down vote the quality of their idea.
+* A user can search in real time their idea list.
 
-## Getting Started
+We were able to build out this functionality. Our app is also responsive.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+# Things that make us proud:
 
-### Prerequisites
+* We're proud of how we've preserved the comp's integrity.
+* We're proud that we built out our local storage using JSON and JS objects (and not arrays).
+* Of how much we've learned working together.
 
-What things you need to install the software and how to install them
+# Things to improve in the next iteration
 
-```
-Give examples
-```
+* We have some small UI changes that move beyond the comp - for instance having the user-input form remain sticky when the user scrolls and the user-input submit upon enter/return.
+* We'd like ideas to sort by quality automatically.
+* We'd like to DRY up more of our jQuery, especially in our event listeners.
 
-### Installing
+# Questions we still have:
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+* When should we strive for global vs local variables and where do you start losing your return on perfomance investment?
+* Should we truncate longer cards and when should we use webkits to do so?
+* When would our performance have been improved by using an array in local storage?
+* How do we implement modular scroll functionality and sticky nav? It seems really complicated...
+* How would a user clear the local storage?
+* Should you alphabetize functions in your JS file sections?
+* We found ourselves debating ids vs. classes often... when should uses classes in event bubbling?
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+* HTML
+* CSS
+* JavaScript/jQuery
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+* **Amanda Tjan** - [Amanda Tjan](https://github.com/soytjan)
+* **Melissa Wagasky** - [Melissa Wagasky](https://github.com/wagasky)
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* Thomas in Module #2 for his awesome help in brainstorming before we started!
+* Jesse in Module #2 for reviewing our code!
+* Our awesome classmate James for always being there to brainstorm when we're stuck.
+* Coffee
