@@ -164,27 +164,35 @@ function getIdeasFromStorage() {
   }
 }
 
-$('#search-input').keypress(function(event) {
-  if(event.keyCode === 13){
+$('#search-input').keyup(function(event) {
     event.preventDefault();
-    // console.log('enter was pressed');
     var searchText = $(this).val();
-    console.log(searchText);
     var filteredText = searchText.toUpperCase();
     for (var i = 0; i < localStorage.length; i++) {
-      // var currentId = event.target.closest('.idea-card').id;
       var retrievedIdea = localStorage.getItem(localStorage.key(i));
       var parsedObject = JSON.parse(retrievedIdea);
       var currentId = parsedObject['idNum'];
-      console.log(parsedObject);
-      console.log(currentId);
       if (parsedObject['title'].toUpperCase().includes(filteredText) || parsedObject['body'].toUpperCase().includes(filteredText)) {
-        console.log('yay!')
-        console.log(parsedObject);
         $(`#${currentId}`).css( "display", "" );
       } else {
         $(`#${currentId}`).css( "display", "none");
-        console.log('boo');
+      }
+    }
+});
+
+$('#search-input').keypress(function(event) {
+  if(event.keyCode === 13){
+    event.preventDefault();
+    var searchText = $(this).val();
+    var filteredText = searchText.toUpperCase();
+    for (var i = 0; i < localStorage.length; i++) {
+      var retrievedIdea = localStorage.getItem(localStorage.key(i));
+      var parsedObject = JSON.parse(retrievedIdea);
+      var currentId = parsedObject['idNum'];
+      if (parsedObject['title'].toUpperCase().includes(filteredText) || parsedObject['body'].toUpperCase().includes(filteredText)) {
+        $(`#${currentId}`).css( "display", "" );
+      } else {
+        $(`#${currentId}`).css( "display", "none");
       }
     }
   } 
