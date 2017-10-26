@@ -10,14 +10,17 @@ Our task was to recreate an Ideabox comp and the following functionality:
 
 We were able to build out this functionality. Our app is also responsive.
 
-The desktop comp:
+### The desktop comp:
 ![The desktop comp](https://user-images.githubusercontent.com/24358415/32070167-b1cee968-ba48-11e7-883e-58960ffded24.png)
 
-The mobile comp
+### The mobile comp:
+
 ![The mobile comp](https://user-images.githubusercontent.com/24358415/32070202-d809b086-ba48-11e7-8307-3c3eecd7cd63.png)
 
-Our app:
+### Our desktop app:
 ![screen shot 2017-10-26 at 12 27 05 pm](https://user-images.githubusercontent.com/24358415/32070266-10a4b706-ba49-11e7-86c7-fbed4870dd0d.png)
+
+### Our mobile app:
 ![screen shot 2017-10-26 at 12 27 19 pm](https://user-images.githubusercontent.com/24358415/32070271-13880d60-ba49-11e7-889d-e52c1424d9c3.png)
 
 # Things that make us proud:
