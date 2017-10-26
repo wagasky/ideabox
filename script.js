@@ -164,4 +164,36 @@ function getIdeasFromStorage() {
   }
 }
 
+$('#search-input').keyup(function(event) {
+    event.preventDefault();
+    var searchText = $(this).val();
+    var filteredText = searchText.toUpperCase();
+    for (var i = 0; i < localStorage.length; i++) {
+      var retrievedIdea = localStorage.getItem(localStorage.key(i));
+      var parsedObject = JSON.parse(retrievedIdea);
+      var currentId = parsedObject['idNum'];
+      if (parsedObject['title'].toUpperCase().includes(filteredText) || parsedObject['body'].toUpperCase().includes(filteredText)) {
+        $(`#${currentId}`).css( "display", "" );
+      } else {
+        $(`#${currentId}`).css( "display", "none");
+      }
+    }
+});
 
+$('#search-input').keypress(function(event) {
+  if(event.keyCode === 13){
+    event.preventDefault();
+    var searchText = $(this).val();
+    var filteredText = searchText.toUpperCase();
+    for (var i = 0; i < localStorage.length; i++) {
+      var retrievedIdea = localStorage.getItem(localStorage.key(i));
+      var parsedObject = JSON.parse(retrievedIdea);
+      var currentId = parsedObject['idNum'];
+      if (parsedObject['title'].toUpperCase().includes(filteredText) || parsedObject['body'].toUpperCase().includes(filteredText)) {
+        $(`#${currentId}`).css( "display", "" );
+      } else {
+        $(`#${currentId}`).css( "display", "none");
+      }
+    }
+  } 
+});
