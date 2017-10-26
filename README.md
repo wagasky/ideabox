@@ -1,4 +1,4 @@
-# Module 1 Ideabox:
+# Turing Front End Module 1 Ideabox:
 
 Our task was to recreate an Ideabox comp and the following functionality:
 
