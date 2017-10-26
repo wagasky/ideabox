@@ -1,85 +1,101 @@
+// VARIABLE
+
 var $ideaCardSection = $('#idea-card-section');
+var $searchInput = $('#search-input');
 
-// could potentially make these local variables...
-var $saveButton = $('#save-button');
+// EVENT LISTENERS
 
-$saveButton.on('click', function(event) {
+// card creation event listeners
+
+$(window).on('load', function() {
+  getIdeasFromStorage();
+})
+
+$('#save-button').on('click', function(event) {
   event.preventDefault();
   genCard();
   resetInputFields();
 });
 
-$(window).on('load', function() {
-  getIdeasFromStorage();
-  console.log("window loaded");
-})
+// card button event listeners
 
-// $('#idea-card-section').on('hover', '.idea-card .downvote', function() {
-//   console.log('hover');
-//   $('.downvote').attr('src','FEE-ideabox-icon-assets/downvote-hover.svg');
-// });
-
-$('#idea-card-section').on('click', '.idea-card .delete', function(event) {
+$ideaCardSection.on('click', '.idea-card .delete', function(event) {
   event.preventDefault();
   deleteButton(this);
-  // look at this to refactor and put in function
   var currentId = event.target.closest('.idea-card').id
   localStorage.removeItem(currentId);
 })
 
-$('#idea-card-section').on('click', '.idea-card .downvote', function(event) {
+$ideaCardSection.on('click', '.idea-card .downvote', function(event) {
   event.preventDefault();
-  console.log(this);
   downvoteButton();
 })
 
-$('#idea-card-section').on('click', '.idea-card .upvote', function(event) {
+$ideaCardSection.on('click', '.idea-card .upvote', function(event) {
   event.preventDefault();
-  console.log(this);
   upvoteButton();
 })
 
-$('#idea-card-section').on('blur', '.idea-card .idea-title', function(event) {
+// edit card event listeners
+
+$ideaCardSection.on('blur', '.idea-card .idea-title', function(event) {
   event.preventDefault();
-  console.log(this);
   editCardTitle();
 })
 
-$('#idea-card-section').on('blur', '.idea-card .idea-description', function(event) {
-  event.preventDefault();
-  editCardDescription();
-})
-
-$('#idea-card-section').keypress('.idea-card .idea-title', function(event) {
+$ideaCardSection.keypress('.idea-card .idea-title', function(event) {
   if(event.keyCode === 13){
     event.preventDefault();
     editCardTitle();
   }
 })
 
-$('#idea-card-section').keypress('.idea-card .idea-description', function(event) {
+$ideaCardSection.on('blur', '.idea-card .idea-description', function(event) {
+  event.preventDefault();
+  editCardDescription();
+})
+
+$ideaCardSection.keypress('.idea-card .idea-description', function(event) {
   if(event.keyCode === 13){
     event.preventDefault();
     editCardDescription();
   }
 })
-function editCardTitle() {
-  var currentId = event.target.closest('.idea-card').id;
-  var retrievedObject = localStorage.getItem(currentId);
-  var parsedObject = JSON.parse(retrievedObject);
-  var newTitle = $(`#${currentId} .idea-title`).text();
-  parsedObject['title'] = newTitle;
-  putIntoStorage(parsedObject);
+
+// search event listeners
+
+$searchInput.keyup(searchFunction);
+
+$searchInput.keypress(function(event) {
+  if(event.keyCode === 13) {
+    event.preventDefault();
+    $(this).blur();
+  } 
+});
+
+// FUNCTIONS 
+
+// create card function
+
+function Idea(title, body, idNum, quality) {
+  this.title = title;
+  this.body = body;
+  this.idNum = idNum;
+  this.quality = quality || 'swill';
 }
 
-function editCardDescription() {
-  var currentId = event.target.closest('.idea-card').id;
-  var retrievedObject = localStorage.getItem(currentId);
-  var parsedObject = JSON.parse(retrievedObject);
-  var newDescription = $(`#${currentId} .idea-description`).text();
-  parsedObject['body'] = newDescription;
-  putIntoStorage(parsedObject);
+function genCard(title, body) {
+  var title = $('#title-input').val();
+  var body = $('#description-input').val();
+  var newIdea = new Idea(title, body, Date.now());
+  prependIdea(newIdea);
+  putIntoStorage(newIdea);
 }
+
+function putIntoStorage(object) {
+  var stringIdea = JSON.stringify(object);
+  localStorage.setItem(object['idNum'], stringIdea);
+} 
 
 function prependIdea(idea) {
   $ideaCardSection.prepend(`<article id="${idea['idNum']}" class="idea-card">
@@ -103,6 +119,16 @@ function resetInputFields() {
   var $form = $('#user-input-form');
   $form[0].reset();
 }
+
+function getIdeasFromStorage() {
+  for(var i = 0; i < localStorage.length; i++) {
+    var retrievedIdea = localStorage.getItem(localStorage.key(i));
+    var parsedIdea = JSON.parse(retrievedIdea);
+    prependIdea(parsedIdea);
+  }
+}
+
+// card button functions
 
 function deleteButton(button) {
   button.closest('.idea-card').remove();
@@ -136,64 +162,40 @@ function upvoteButton() {
   putIntoStorage(parsedObject);
 }
 
-function Idea(title, body, idNum, quality) {
-  this.title = title;
-  this.body = body;
-  this.idNum = idNum;
-  this.quality = quality || 'swill';
+// edit card functions
+
+function editCardTitle() {
+  var currentId = event.target.closest('.idea-card').id;
+  var retrievedObject = localStorage.getItem(currentId);
+  var parsedObject = JSON.parse(retrievedObject);
+  var newTitle = $(`#${currentId} .idea-title`).text();
+  parsedObject['title'] = newTitle;
+  putIntoStorage(parsedObject);
 }
 
-function genCard(title, body) {
-  var title = $('#title-input').val();
-  var body = $('#description-input').val();
-  var newIdea = new Idea(title, body, Date.now());
-  prependIdea(newIdea);
-  putIntoStorage(newIdea);
+function editCardDescription() {
+  var currentId = event.target.closest('.idea-card').id;
+  var retrievedObject = localStorage.getItem(currentId);
+  var parsedObject = JSON.parse(retrievedObject);
+  var newDescription = $(`#${currentId} .idea-description`).text();
+  parsedObject['body'] = newDescription;
+  putIntoStorage(parsedObject);
 }
 
-function putIntoStorage(object) {
-  var stringIdea = JSON.stringify(object);
-  localStorage.setItem(object['idNum'], stringIdea);
-} 
+// search function
 
-function getIdeasFromStorage() {
-  for(var i = 0; i < localStorage.length; i++) {
+function searchFunction(event) {
+  event.preventDefault();
+  var searchText = $(this).val();
+  var filteredText = searchText.toUpperCase();
+  for (var i = 0; i < localStorage.length; i++) {
     var retrievedIdea = localStorage.getItem(localStorage.key(i));
-    var parsedIdea = JSON.parse(retrievedIdea);
-    prependIdea(parsedIdea);
+    var parsedObject = JSON.parse(retrievedIdea);
+    var currentId = parsedObject['idNum'];
+    if (parsedObject['title'].toUpperCase().includes(filteredText) || parsedObject['body'].toUpperCase().includes(filteredText)) {
+      $(`#${currentId}`).css( "display", "" );
+    } else {
+      $(`#${currentId}`).css( "display", "none");
+    }
   }
 }
-
-$('#search-input').keyup(function(event) {
-    event.preventDefault();
-    var searchText = $(this).val();
-    var filteredText = searchText.toUpperCase();
-    for (var i = 0; i < localStorage.length; i++) {
-      var retrievedIdea = localStorage.getItem(localStorage.key(i));
-      var parsedObject = JSON.parse(retrievedIdea);
-      var currentId = parsedObject['idNum'];
-      if (parsedObject['title'].toUpperCase().includes(filteredText) || parsedObject['body'].toUpperCase().includes(filteredText)) {
-        $(`#${currentId}`).css( "display", "" );
-      } else {
-        $(`#${currentId}`).css( "display", "none");
-      }
-    }
-});
-
-$('#search-input').keypress(function(event) {
-  if(event.keyCode === 13){
-    event.preventDefault();
-    var searchText = $(this).val();
-    var filteredText = searchText.toUpperCase();
-    for (var i = 0; i < localStorage.length; i++) {
-      var retrievedIdea = localStorage.getItem(localStorage.key(i));
-      var parsedObject = JSON.parse(retrievedIdea);
-      var currentId = parsedObject['idNum'];
-      if (parsedObject['title'].toUpperCase().includes(filteredText) || parsedObject['body'].toUpperCase().includes(filteredText)) {
-        $(`#${currentId}`).css( "display", "" );
-      } else {
-        $(`#${currentId}`).css( "display", "none");
-      }
-    }
-  } 
-});

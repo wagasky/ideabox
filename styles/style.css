@@ -11,7 +11,6 @@ label {
   display:none;
 }
 
-
 /*IDEA INPUT FORM*/
 
 h1 {
@@ -30,7 +29,6 @@ h1 span {
 textarea {
   resize: none;
 }
-
 
 input::placeholder,
 textarea::placeholder {
@@ -171,7 +169,7 @@ p {
   height: 26px;
 }
 
-/*DELETE*/
+/*DELETE BUTTON*/
 
 .delete {
   background: url(../FEE-ideabox-icon-assets/delete.svg);
@@ -198,7 +196,6 @@ p {
 #search-input {
   margin: 18px 0px 20px 0px;
 }
-
 
 #idea-box-section {
   align-items: center;
@@ -253,20 +250,4 @@ p {
   .single-line-input {
     width: 480px;
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
