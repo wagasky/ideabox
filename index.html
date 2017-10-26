@@ -1,37 +1,33 @@
 <!DOCTYPE html>
-
 <html>
-
-<head>
-    <link rel="stylesheet" type="text/css" href="styles/reset.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/style.css" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <title>Amanda and Melissa's Ideabox</title>
-</head>
-
-<body>
-  <section id="user-input-form-section" class="main-section">
-    <h1 id="ideabox-title-text">idea<span>box</span></h1>
-    <form id="user-input-form">
-      <label for="title-input">Title</label>
-      <label for="description-input">Body</label>
-      <input id ="title-input" class="single-line-input" type="text" name="title-input" placeholder="Title">
-      <textarea id="description-input" class="multi-line-input" type="text" name="description-input" placeholder="Body" rows="20" cols="10" wrap="soft"></textarea>
-      <button id="save-button" class="rectangular-blue-button" type="input">save</button>
-    </form>
-  </section>
-
-  <section id="idea-box-section" class="main-section">
-    <form id="search-input-form">
-      <label for="search-input">Search</label>
-      <input id="search-input" class="single-line-input" type="text" name="search-input" placeholder="Search">
-    </form>
-    <section id="idea-card-section">
+  <head>
+      <link rel="stylesheet" type="text/css" href="styles/reset.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="styles/style.css" type="text/css">
+      <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <title>Amanda and Melissa's Ideabox</title>
+  </head>
+  <body>
+    <section id="user-input-form-section" class="main-section">
+      <h1 id="ideabox-title-text">idea<span>box</span></h1>
+      <form id="user-input-form">
+        <label for="title-input">Title</label>
+        <label for="description-input">Body</label>
+        <input id ="title-input" class="single-line-input" type="text" name="title-input" placeholder="Title">
+        <textarea id="description-input" class="multi-line-input" type="text" name="description-input" placeholder="Body" rows="20" cols="10" wrap="soft"></textarea>
+        <button id="save-button" class="rectangular-blue-button" type="input">save</button>
+      </form>
     </section>
-  </section>
-  <script type="text/javascript" src="script.js"></script>
-</body>
+    <section id="idea-box-section" class="main-section">
+      <form id="search-input-form">
+        <label for="search-input">Search</label>
+        <input id="search-input" class="single-line-input" type="text" name="search-input" placeholder="Search">
+      </form>
+      <section id="idea-card-section">
+      </section>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+  </body>
 </html>
