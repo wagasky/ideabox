@@ -11,9 +11,6 @@ label {
   display:none;
 }
 
-textarea {
-  resize: none
-}
 
 /*IDEA INPUT FORM*/
 
@@ -30,11 +27,18 @@ h1 span {
   color: #6D6E71;
 }
 
-input::placeholder, textarea::placeholder {
+textarea {
+  resize: none;
+}
+
+
+input::placeholder,
+textarea::placeholder {
   color: #BDBEC0;
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   background   : #EEEEEE;
   outline      : none;
 }
@@ -43,6 +47,7 @@ input:focus, textarea:focus {
   background-color: #E5F3F2;
   height: 300px;
   text-align: center;
+  width: 100%;
 }
 
 .rectangular-blue-button {
@@ -91,6 +96,7 @@ p {
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
   letter-spacing: .5px;
+  line-height: 1.40;
   overflow: hidden;
   width: 100%;
   word-wrap: break-word;
@@ -114,10 +120,85 @@ p {
   width: 277px;
 }
 
+/*BUTTON STATES*/
+
 .small-grey-button {
   height: 26px;
   padding: 0px 15px 0px 0px;
 }
+
+/*DOWN VOTE BUTTON*/
+
+.downvote {
+  background: url(../FEE-ideabox-icon-assets/downvote.svg);
+  background-repeat: no-repeat;
+  height: 26px;
+}
+
+#down-vote-button {
+  border-style: none;
+  border: none;
+  height: 26px;
+  margin: 0px 10px 0px 0px;
+  width: 26px;
+}
+
+.downvote:hover {
+  background: url(../FEE-ideabox-icon-assets/downvote-hover.svg);
+  background-repeat: no-repeat;
+  height: 26px;
+}
+
+/*UPVOTE BUTTON*/
+
+.upvote {
+  background: url(../FEE-ideabox-icon-assets/upvote.svg);
+  background-repeat: no-repeat;
+  height: 26px;
+}
+
+#up-vote-button {
+  border-style: none;
+  border: none;
+  height: 26px;
+  margin: 0px 10px 0px 0px;
+  width: 26px;
+}
+
+.upvote:hover {
+  background: url(../FEE-ideabox-icon-assets/upvote-hover.svg);
+  background-repeat: no-repeat;
+  height: 26px;
+}
+
+/*DELETE*/
+
+.delete {
+  background: url(../FEE-ideabox-icon-assets/delete.svg);
+  background-repeat: no-repeat;
+  height: 26px;
+}
+
+#delete-button {
+  border-style: none;
+  border: none;
+  height: 26px;
+  margin: 0px 10px 0px 0px;
+  width: 26px;
+}
+
+.delete:hover {
+  background: url(../FEE-ideabox-icon-assets/delete-hover.svg);
+  background-repeat: no-repeat;
+  height: 26px;
+}
+
+/*IDEA CARD CONTAINER*/
+
+#search-input {
+  margin: 18px 0px 20px 0px;
+}
+
 
 #idea-box-section {
   align-items: center;
@@ -126,16 +207,12 @@ p {
   flex-direction: column;
 }
 
-#search-input {
-  margin: 18px 0px 20px 0px;
-}
-
 #idea-card-title-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
   margin-top: 20px;
 }
 
@@ -144,8 +221,8 @@ p {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 22px;
+  margin-top: 19px;
 }
 
 #quality-display-text {
@@ -176,14 +253,6 @@ p {
   .single-line-input {
     width: 480px;
   }
-
-
-
-
-
-
-
-
 
 
 

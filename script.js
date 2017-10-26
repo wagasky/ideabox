@@ -14,6 +14,11 @@ $(window).on('load', function() {
   console.log("window loaded");
 })
 
+// $('#idea-card-section').on('hover', '.idea-card .downvote', function() {
+//   console.log('hover');
+//   $('.downvote').attr('src','FEE-ideabox-icon-assets/downvote-hover.svg');
+// });
+
 $('#idea-card-section').on('click', '.idea-card .delete', function(event) {
   event.preventDefault();
   deleteButton(this);
@@ -58,7 +63,6 @@ $('#idea-card-section').keypress('.idea-card .idea-description', function(event)
     editCardDescription();
   }
 })
-
 function editCardTitle() {
   var currentId = event.target.closest('.idea-card').id;
   var retrievedObject = localStorage.getItem(currentId);
@@ -83,14 +87,12 @@ function prependIdea(idea) {
         <div id="idea-card-title-container">
         <h2 contenteditable=true id="card-title" class="card-headings idea-title">${idea['title']}</h2>
         <label for="delete-button">Delete</label>
-        <input id="delete-button" class="small-grey-button delete" name="delete-button" type="image" src="FEE-ideabox-icon-assets/delete.svg"></input>
+        <button id="delete-button" class="small-grey-button delete" name="delete-button"></button>
         </div>
         <p contenteditable=true id="card-description" class="idea-description">${idea['body']}</p>
         <div id="idea-card-quality-container">
-          <label for="up-vote-button">Up</label>
-          <label for="down-vote-button">Down</label>
-          <input id="up-vote-button" class="small-grey-button upvote" name="up-vote-button" type="image" src="FEE-ideabox-icon-assets/upvote.svg"></input>
-          <input id="down-vote-button" class="small-grey-button downvote" name="down-vote-button" type="image" src="FEE-ideabox-icon-assets/downvote.svg"></input>
+          <button id="up-vote-button" class="small-grey-button upvote" name="up-vote-button"></button>
+          <button id="down-vote-button" class="small-grey-button downvote" name="down-vote-button"></button>
           <h3 id="quality-display-text" class="card-headings">quality : <span class="quality">${idea['quality']}</span></h3>
         </div>
       </form>
